@@ -1,0 +1,101 @@
+---
+title: Machine Learning Workflow Orchestration
+subtitle: Flyte & StreamFlow
+author: Bernd Doser (HITS)
+date: 2024/10/07
+date-format: "MMMM YYYY"
+institute: "[HITS gGmbH](https://h-its.org)"
+format:
+  revealjs:
+    logo: images/HITS_RGB_eng.jpg
+    footer: "ML Workflow Orchestration (Bernd Doser, HITS)"
+    slide-number: true
+    highlight-style: a11y
+    width: 1300
+---
+
+## General Requirements
+
+- Easy deployment of the workflow infrastructure
+- Flexible pipeline definition
+- Monitoring status, execution times, and results
+- Fast pipeline for big data (S3 / Filesystem)
+- Integration of Containers
+- Integration of HPC clusters (SLURM / Apptainers)
+
+
+## Example Workflow
+
+![](images/flyte-ui_mnist-workflow.png)
+
+
+## Flyte vs StreamFlow
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Flyte
+  - Kubernetes and S3 storage
+  + Flexible workflow using python function decorators `@task` and `@workflow`
+  - Add HPC resources to Kubernetes
+
+  **Internal use**
+:::
+
+::: {.column width="50%"}
+### StreamFlow
+  + Common workflow language
+  + No special environment needed
+  + SLURM plugin available
+  + Developed by Alpha UniTO (SPACE partner)
+
+  **Workflow Distribution**
+:::
+
+::::
+
+## Flyte 
+
+- [Flyte](https://flyte.org/) evaluation setup
+  - [k3s](https://k3s.io/): Lightweight Kubernetes
+  - [MinIO](https://min.io/): High-performance, S3 compatible object store
+- Parallelization: Automatically managed by task dependencies
+- Versioning, caching, dynamic workflows available
+- Integration of HPC resources
+  - Custom Flyte agent using SLURM Rest API (not available yet)
+  - Kubernetes agent: GPU node with 4x NVIDIA A40 cards
+
+
+## Spherinator Workflow with Flyte
+
+```python
+{{< include code/flyte_example.py >}}
+```
+
+
+## StreamFlow
+
+- [Common Workflow Language (CWL)](https://www.commonwl.org/) as open standard
+- [BioExcel CoE Building Blocks](https://bioexcel.eu/biobb-new/) is using CWL for interoperable and reproducible biomolecular simulation workflows.
+- StreamFlow connects CWL with HPC
+- Supports SLURM, Singularity and Containers
+- [Web service for visualization](https://view.commonwl.org/)
+
+<!-- - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl) -->
+
+
+## StreamFlow Architecture
+
+![](images/streamflow-model.png){height="500"}
+
+
+## Supported Features
+
+  - [Parallelization](https://www.commonwl.org/features/#parallelization-and-scale-with-cwl)
+  - [Caching](https://www.commonwl.org/user_guide/topics/troubleshooting.html#run-cwltool-with-cachedir)
+    (vs [Flyte caching](https://docs.flyte.org/en/latest/user_guide/development_lifecycle/caching.html#caching))
+  - Nested workflows
+  - Looping / scattering tasks
+  - Conditional workflows
+  - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl)
+  - [Web service for visualization](https://view.commonwl.org/) -->
