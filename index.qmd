@@ -1,10 +1,10 @@
 ---
 title: Machine Learning Workflow Orchestration
 subtitle: Flyte & StreamFlow
-author: Bernd Doser (HITS)
+author: Bernd Doser
 date: 2024/10/07
 date-format: "MMMM YYYY"
-institute: "[HITS gGmbH](https://h-its.org)"
+institute: "[HITS](https://h-its.org)"
 format:
   revealjs:
     logo: images/HITS_RGB_eng.jpg
@@ -48,6 +48,29 @@ format:
 ![](images/flyte-ui_mnist-workflow.png)
 
 
+## File, Block, and Object Storage
+
+- Differ between storage type and storage access type (file, block, object)
+- Throughput vs Latency
+  - Traditional: object storage is throughput optimized whereas file/block storage is latency optimized
+- Object storage uses RESTful API (cloud-native)
+- File uses POSIX, Block uses FC/SCSI
+
+## Block Storage
+
+- Data is divided in uniformly sized blocks
+- Blocks ca stored across different storage environments
+- Blocks do not contain any information about the content
+- local SSD
+
+## File Storage
+
+- Hierarchical structure in files and directories
+- NFS 
+
+## Feed the Beast
+
+
 ## Flyte vs StreamFlow
 
 :::: {.columns}
@@ -80,7 +103,7 @@ format:
   - Kubernetes agent: GPU node with 4x NVIDIA A40 cards
 
 
-## Spherinator Workflow with Flyte
+## Flyte: Example
 
 ```python
 {{< include code/flyte_example.py >}}
@@ -113,3 +136,10 @@ format:
   - Conditional workflows
   - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl)
   - [Web service for visualization](https://view.commonwl.org/) -->
+
+
+## StreamFlow: Example
+
+```yaml
+{{< include code/streamflow_example.cwl >}}
+```
