@@ -16,8 +16,13 @@ format:
 
 ## Why do we need a workflow orchestration
 
+- Define a workflow in a reproducible way
 - To manage the flow of data and dependencies between tasks
 - To manage the execution of tasks
+
+::: {.notes}
+This is a note
+:::
 
 ## How we can define a workflow
 
@@ -47,6 +52,9 @@ format:
 
 ![](images/flyte-ui_mnist-workflow.png)
 
+<!-- ## PyTorch Lightning -->
+<!-- ## Weights & Biases -->
+
 
 ## File, Block, and Object Storage
 
@@ -69,6 +77,14 @@ format:
 - NFS 
 
 ## Feed the Beast
+
+## DataLoader: Download vs Streaming
+
+https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable#downloading-and-streaming
+
+## MinIO Object Storage
+
+![](./images/minio.png)
 
 
 ## Flyte vs StreamFlow
