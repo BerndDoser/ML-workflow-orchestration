@@ -1,0 +1,74 @@
+# Introduction: Workflow Orchestration
+
+## Why do we need a workflow orchestration
+
+- Define a workflow in a reproducible way
+- To manage the flow of data and dependencies between tasks
+- To manage the execution of tasks
+
+::: {.notes}
+This is a note
+:::
+
+## How we can define a workflow
+
+- Using a general purpose programming languages (e.g Python)
+- Using a domain specific language (e.g. CWL)
+- Using a graphical user interface
+
+## Orchestration Requirements
+
+- **Reproducibility**: Ensure your experiments are reproducible by tracking the code, data, model, and environment used in each run.
+- **Resource management**: Manage resources efficiently by running tasks in parallel and optimizing resource usage.
+- **Scalability**: Scale your workflows to handle large datasets and complex pipelines.
+- **Monitoring**: Track the progress of workflows and monitor their performance and results.
+- **Collaboration**: Enable collaboration between team members by sharing code, data, and results.
+
+
+<!--
+- Easy deployment of the workflow infrastructure
+- Flexible pipeline definition
+- Monitoring status, execution times, and results
+- Fast pipeline for big data (S3 / Filesystem)
+- Integration of Containers
+- Integration of HPC clusters (SLURM / Apptainers) -->
+
+
+## Example Workflow
+
+![](images/flyte-ui_mnist-workflow.png)
+
+<!-- ## PyTorch Lightning -->
+<!-- ## Weights & Biases -->
+
+
+## File, Block, and Object Storage
+
+- Differ between storage type and storage access type (file, block, object)
+- Throughput vs Latency
+  - Traditional: object storage is throughput optimized whereas file/block storage is latency optimized
+- Object storage uses RESTful API (cloud-native)
+- File uses POSIX, Block uses FC/SCSI
+
+## Block Storage
+
+- Data is divided in uniformly sized blocks
+- Blocks ca stored across different storage environments
+- Blocks do not contain any information about the content
+- local SSD
+
+## File Storage
+
+- Hierarchical structure in files and directories
+- NFS 
+
+## Feed the Beast
+
+## DataLoader: Download vs Streaming
+
+https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable#downloading-and-streaming
+
+## MinIO Object Storage
+
+![](./images/minio.png)
+

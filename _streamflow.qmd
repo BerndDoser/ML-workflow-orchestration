@@ -1,0 +1,54 @@
+# StreamFlow
+
+- [Common Workflow Language (CWL)](https://www.commonwl.org/) as open standard
+- [BioExcel CoE Building Blocks](https://bioexcel.eu/biobb-new/) is using CWL for interoperable and reproducible biomolecular simulation workflows.
+- StreamFlow connects CWL with HPC
+- Supports SLURM, Singularity and Containers
+- [Web service for visualization](https://view.commonwl.org/)
+
+<!-- - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl) -->
+
+
+## StreamFlow Architecture
+
+![](images/streamflow-model.png){height="500"}
+
+
+## Supported Features
+
+  - [Parallelization](https://www.commonwl.org/features/#parallelization-and-scale-with-cwl)
+  - [Caching](https://www.commonwl.org/user_guide/topics/troubleshooting.html#run-cwltool-with-cachedir)
+    (vs [Flyte caching](https://docs.flyte.org/en/latest/user_guide/development_lifecycle/caching.html#caching))
+  - Nested workflows
+  - Looping / scattering tasks
+  - Conditional workflows
+  - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl)
+  - [Web service for visualization](https://view.commonwl.org/) -->
+
+
+## StreamFlow: Example
+
+```yaml
+{{< include code/streamflow_example.cwl >}}
+```
+
+
+## Flyte vs StreamFlow
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Flyte
+  - Kubernetes and S3 storage
+  - Flexible workflow using python function decorators `@task` and `@workflow`
+  - Add HPC resources to Kubernetes
+:::
+
+::: {.column width="50%"}
+### StreamFlow
+  - Common workflow language (CWL)
+  - No special environment needed
+  - SLURM plugin available
+:::
+
+::::

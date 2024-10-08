@@ -1,0 +1,33 @@
+# Flyte
+
+[Flyte](https://flyte.org/) is a workflow orchestration platform using Kubernetes and S3 storage.
+
+## Flyte Structure
+
+- **Project**: A collection of workflows, tasks, and executions.
+- **Domain**: Deployment level (`development`, `staging`, and `production`)
+- **Workflow**: A collection (directed acyclic graph) of tasks.
+- **Task**: Fully independent unit of work.
+- **Execution**: A run of a workflow.
+
+
+## Flyte Tasks
+
+- Tasks are strongly typed (See [Flyte Type Mapping](https://docs.flyte.org/en/latest/user_guide/data_types_and_io/index.html#data-types-and-io))
+- Tasks are regular Python function decorated with `@task` 
+- Tasks must be idempotent (multiple executions don't change the result).
+
+```python
+from typing import List
+from flytekit import task
+
+@task
+def mean(values: List[float]) -> float:
+    return sum(values) / len(values)
+```
+
+## Connecting Tasks
+
+Each tasks is encapsulated in a container and the resources are managed by Kubernetes.
+
+![](images/union_tasks.png)
