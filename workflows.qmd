@@ -1,4 +1,4 @@
-## Why do we need a Workflow Orchestration
+## Workflow Orchestration
 
 ::: {.incremental}
 
@@ -12,6 +12,18 @@
 
 
 ## SPACE Project
+
+Astrophysical Simulations for Exascale Computing ([SPACE](https://www.space-coe.eu/)).
+
+::: {layout='[1,2.2,0.5]' layout-valign=center}
+![](images/illustris.png)
+IllustrisTNG
+
+![](images/projectx.svg)
+
+![](images/P404_f2.png)
+[Spherinator & HiPSter](https://space.h-its.org/)
+:::
 
 
 
