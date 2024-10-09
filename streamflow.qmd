@@ -1,4 +1,4 @@
-# StreamFlow
+## StreamFlow
 
 - [Common Workflow Language (CWL)](https://www.commonwl.org/) as open standard
 - [BioExcel CoE Building Blocks](https://bioexcel.eu/biobb-new/) is using CWL for interoperable and reproducible biomolecular simulation workflows.

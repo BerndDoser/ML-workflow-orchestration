@@ -1,21 +1,3 @@
----
-title: Machine Learning Workflow Orchestration
-subtitle: Flyte & StreamFlow
-author: Bernd Doser
-date: 2024/10/07
-date-format: "MMMM YYYY"
-institute: "[HITS](https://h-its.org)"
-format:
-  revealjs:
-    logo: images/HITS_RGB_eng.jpg
-    footer: "ML Workflow Orchestration (Bernd Doser, HITS)"
-    slide-number: true
-    highlight-style: a11y
-    width: 1300
-    toc: true
-    toc-depth: 1
----
-
-{{< include _intro.qmd >}}
-{{< include _flyte.qmd >}}
-{{< include _streamflow.qmd >}}
+{{< include intro.qmd >}}
+{{< include flyte.qmd >}}
+{{< include streamflow.qmd >}}

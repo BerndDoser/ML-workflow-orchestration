@@ -1,4 +1,4 @@
-# Flyte
+## Flyte
 
 [Flyte](https://flyte.org/) is a workflow orchestration platform using Kubernetes and S3 storage.
 
@@ -26,8 +26,26 @@ def mean(values: List[float]) -> float:
     return sum(values) / len(values)
 ```
 
-## Connecting Tasks
+## Containerized Tasks
 
-Each tasks is encapsulated in a container and the resources are managed by Kubernetes.
+A Flyte task operates within its own container and runs on a Kubernetes pod
 
 ![](images/union_tasks.png)
+
+
+## ImageSpec
+
+- Customize the container image without a Dockerfile.
+- Container image is build at registration and pushed to the container registry.
+
+```python
+custom_image = ImageSpec(
+    packages=["torch", "torchvision", "lightning"],
+    apt_packages=["curl", "wget"],
+    cuda="12.6",
+    python_version="3.12",
+    registry="registry.h-its.org/doserbd/flyte",
+)
+```
+
+## Container Task
