@@ -1,6 +1,7 @@
 ## Outline
 
-- Introduction to Workflow Orchestration
+- Workflow Orchestration
+- HPC vs AI/ML Infrastructure
 - StreamFlow
 - Flyte
 - Object Storage

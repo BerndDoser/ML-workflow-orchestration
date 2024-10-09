@@ -32,9 +32,30 @@ IllustrisTNG
 ![](images/flyte-ui_mnist-workflow.png)
 
 
-## Workflow Orchestration
+## Workflow Orchestration Management
 
 - General purpose programming languages (e.g Python)
 - Domain specific language (e.g. [Common Workflow Language](https://www.commonwl.org/))
 - Graphical user interface (e.g. [ReactFlow](https://reactflow.dev/) @ [fal.ai](https://fal.ai/dashboard))
 ![](images/fal_ai.png){width="1300"}
+
+
+## HPC vs AI/ML Infrastructure {background-image="images/ai_vs_hpc.png" background-opacity=0.2}
+
+
+::: {layout='[1,1]' layout-valign=center}
+::: n1
+
+- SLURM
+- MPI
+- File Storage
+
+:::
+::: n2
+
+- Cloud-native
+- Kubernetes
+- Object Storage
+
+:::
+:::
