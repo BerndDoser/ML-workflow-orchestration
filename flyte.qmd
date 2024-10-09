@@ -11,11 +11,21 @@
 - **Execution**: A run of a workflow.
 
 
+## Flyte Command-line Interface
+
+- Start a demo cluster on your local machine
+- Create a new project
+```{.bash code-line-numbers="false"}
+flytectl create project --name seminar --id seminar --description "seminar showcases"
+```
+- Manage workflows, tasks, and executions
+
+
 ## Flyte Tasks
 
 - Tasks are strongly typed (See [Flyte Type Mapping](https://docs.flyte.org/en/latest/user_guide/data_types_and_io/index.html#data-types-and-io))
 - Tasks are regular Python function decorated with `@task` 
-- Tasks must be idempotent (multiple executions don't change the result).
+- Tasks are designed to be idempotent (multiple executions don't change the result).
 
 ```python
 from typing import List

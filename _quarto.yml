@@ -5,6 +5,11 @@ date: 2024/10/15
 date-format: "MMMM YYYY"
 institute: "[HITS](https://h-its.org)"
 
+title-slide-attributes:
+  data-background-image: images/ai_workflow2.png
+  data-background-size: cover
+  data-background-opacity: "0.3"
+
 format:
   revealjs:
     logo: images/HITS_RGB_eng.jpg

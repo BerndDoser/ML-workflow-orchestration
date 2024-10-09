@@ -1,0 +1,28 @@
+## Why do we need a Workflow Orchestration
+
+::: {.incremental}
+
+- **Reproducibility**: Ensure your experiments are reproducible by tracking the code, data, model, and environment used in each run.
+- **Resource management**: Manage resources efficiently by running tasks in parallel and optimizing resource usage.
+- **Scalability**: Scale your workflows to handle large datasets and complex pipelines.
+- **Monitoring**: Track the progress of workflows and monitor their performance and results.
+- **Collaboration**: Enable collaboration between team members by sharing code, data, and results.
+
+:::
+
+
+## SPACE Project
+
+
+
+## Example Workflow
+
+![](images/flyte-ui_mnist-workflow.png)
+
+
+## Workflow Orchestration
+
+- General purpose programming languages (e.g Python)
+- Domain specific language (e.g. [Common Workflow Language](https://www.commonwl.org/))
+- Graphical user interface (e.g. [ReactFlow](https://reactflow.dev/) @ [fal.ai](https://fal.ai/dashboard))
+![](images/fal_ai.png){width="1300"}

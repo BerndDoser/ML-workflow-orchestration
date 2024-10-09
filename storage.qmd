@@ -1,0 +1,32 @@
+## File, Block, and Object Storage
+
+- Differ between storage type and storage access type (file, block, object)
+- Throughput vs Latency
+  - Traditional: object storage is throughput optimized whereas file/block storage is latency optimized
+- Object storage uses RESTful API (cloud-native)
+- File uses POSIX, Block uses FC/SCSI
+
+## Block Storage
+
+- Data is divided in uniformly sized blocks
+- Blocks ca stored across different storage environments
+- Blocks do not contain any information about the content
+- local SSD
+
+## File Storage
+
+- Hierarchical structure in files and directories
+- NFS 
+
+
+## DataLoader: Download vs Streaming
+
+https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable#downloading-and-streaming
+
+
+## MinIO Object Storage
+
+![](./images/minio.png)
+
+
+## Feed the Beast
