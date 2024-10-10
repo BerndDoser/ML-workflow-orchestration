@@ -43,7 +43,7 @@
 ## {background-image="images/minio-web.png"}
 
 
-## DataLoader: Download vs Streaming
+## Streaming DataLoader
 
 - [Huggingface Streaming](https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable#downloading-and-streaming)
 

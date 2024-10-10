@@ -11,3 +11,23 @@
 {{< include streamflow.qmd >}}
 {{< include flyte.qmd >}}
 {{< include storage.qmd >}}
+
+## Summary
+
+::: {layout='[1,1]'}
+::: {.callout-note icon=false}
+## Flyte
+- General-purpose workflow orchestrator that uses Kubernetes and S3 storage
+- Requires hardware resources to be added to the Kubernetes cluster
+:::
+
+::: {.callout-note icon=false}
+## StreamFlow
+- Common workflow language (CWL)
+- Supports both SLURM and Kubernetes for resource management
+- No special environment needed
+:::
+:::
+
+- **MinIO Object Storage** is a scalable storage solution for unstructured data.
+- **HPC** and **AI/ML** infrastructure have different requirements and technologies.

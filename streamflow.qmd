@@ -8,10 +8,47 @@
 
 <!-- - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl) -->
 
+## Common Workflow Language (CWL)
+
+::: {layout='[1,1]'}
+::: n1
+``` {.yaml filename="workflow.cwl"}
+{{< include code/workflow.cwl >}}
+```
+:::
+::: n2
+``` {.yaml filename="tasl1.cwl"}
+{{< include code/task1.cwl >}}
+```
+``` {.yaml filename="task2.cwl"}
+{{< include code/task2.cwl >}}
+```
+:::
+:::
+
 
 ## StreamFlow Architecture
 
-![](images/streamflow-model.png){height="500"}
+![](images/streamflow-model.png){fig-align="center"}
+
+
+## StreamFlow Deployment
+
+```yaml
+deployments:
+  ssh-cascade:
+    type: ssh
+    config:
+      nodes:
+       - cascade
+  slurm:
+    type: slurm
+    config:
+      maxConcurrentJobs: 10
+      services:
+        cascade:
+          partition: cascade.p
+```
 
 
 ## Supported Features
@@ -26,29 +63,4 @@
   - [Web service for visualization](https://view.commonwl.org/) -->
 
 
-## StreamFlow: Example
 
-```yaml
-{{< include code/streamflow_example.cwl >}}
-```
-
-
-## Flyte vs StreamFlow
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Flyte
-  - Kubernetes and S3 storage
-  - Flexible workflow using python function decorators `@task` and `@workflow`
-  - Add HPC resources to Kubernetes
-:::
-
-::: {.column width="50%"}
-### StreamFlow
-  - Common workflow language (CWL)
-  - No special environment needed
-  - SLURM plugin available
-:::
-
-::::
