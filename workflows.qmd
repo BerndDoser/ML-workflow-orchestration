@@ -42,7 +42,6 @@ IllustrisTNG
 
 ## HPC vs AI/ML Infrastructure {background-image="images/ai_vs_hpc.png" background-opacity=0.2}
 
-
 ::: {layout='[1,1]' layout-valign=center}
 ::: n1
 
@@ -59,3 +58,6 @@ IllustrisTNG
 
 :::
 :::
+
+<!-- Show the background image generated with FLUX -->
+## {background-image="images/ai_vs_hpc.png"}

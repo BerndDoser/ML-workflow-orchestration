@@ -1,8 +1,8 @@
-## Flyte
+## ![](images/favicon-flyte-docs.webp){.logo_h2_inline} Flyte
 
-[Flyte](https://flyte.org/) is a workflow orchestration platform using Kubernetes and S3 object storage.
+- [Flyte](https://flyte.org/) is a highly scalable cloud-native workflow orchestration platform on top of containers and kubernetes
+- Member of the [Linux Foundation AI & Data](https://lfaidata.foundation/projects/flyte/)
 
-![](images/favicon-flyte-docs.webp){.absolute top=0 right=100 width="80"}
 
 ## Flyte Nomenclature
 

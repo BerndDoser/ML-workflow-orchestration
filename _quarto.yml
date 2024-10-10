@@ -10,6 +10,8 @@ title-slide-attributes:
   data-background-size: cover
   data-background-opacity: "0.3"
 
+css: styles.css
+
 format:
   revealjs:
     logo: images/HITS_RGB_eng.jpg
