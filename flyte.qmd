@@ -1,8 +1,10 @@
 ## Flyte
 
-[Flyte](https://flyte.org/) is a workflow orchestration platform using Kubernetes and S3 storage.
+[Flyte](https://flyte.org/) is a workflow orchestration platform using Kubernetes and S3 object storage.
 
-## Flyte Structure
+![](images/favicon-flyte-docs.webp){.absolute top=0 right=100 width="80"}
+
+## Flyte Nomenclature
 
 - **Project**: A collection of workflows, tasks, and executions.
 - **Domain**: Deployment level (`development`, `staging`, and `production`)
@@ -10,6 +12,8 @@
 - **Task**: Fully independent unit of work.
 - **Execution**: A run of a workflow.
 
+
+## Flyte Architecture
 
 ## Flyte Command-line Interface
 
@@ -58,4 +62,6 @@ custom_image = ImageSpec(
 )
 ```
 
-## Container Task
+## Flyte Tutorial
+
+[PyTorch MNIST training](https://docs.flyte.org/en/latest/flytesnacks/examples/mnist_classifier/pytorch_single_node_and_gpu.html)
