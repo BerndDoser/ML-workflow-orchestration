@@ -1,12 +1,10 @@
 ## StreamFlow
 
-- [Common Workflow Language (CWL)](https://www.commonwl.org/) as open standard
+- Relies on the [Common Workflow Language](https://www.commonwl.org/) (CWL)
 - [BioExcel CoE Building Blocks](https://bioexcel.eu/biobb-new/) is using CWL for interoperable and reproducible biomolecular simulation workflows.
 - StreamFlow connects CWL with HPC
-- Supports SLURM, Singularity and Containers
-- [Web service for visualization](https://view.commonwl.org/)
+- Supports Containers (Singularity), Kubernetes and SLURM
 
-<!-- - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl) -->
 
 ## Common Workflow Language (CWL)
 
@@ -27,6 +25,11 @@
 :::
 
 
+## Visualizing CWL
+
+- [Web service for visualization](https://view.commonwl.org/)
+
+
 ## StreamFlow Architecture
 
 ![](images/streamflow-model.png){fig-align="center"}
@@ -34,20 +37,8 @@
 
 ## StreamFlow Deployment
 
-```yaml
-deployments:
-  ssh-cascade:
-    type: ssh
-    config:
-      nodes:
-       - cascade
-  slurm:
-    type: slurm
-    config:
-      maxConcurrentJobs: 10
-      services:
-        cascade:
-          partition: cascade.p
+``` {.yaml filename="streamflow.yaml"}
+{{< include code/streamflow.yaml >}}
 ```
 
 
@@ -59,8 +50,6 @@ deployments:
   - Nested workflows
   - Looping / scattering tasks
   - Conditional workflows
-  - VSCode extension: [benten-cwl](https://marketplace.visualstudio.com/items?itemName=sbg-rabix.benten-cwl)
-  - [Web service for visualization](https://view.commonwl.org/) -->
 
 
 

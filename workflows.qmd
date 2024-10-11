@@ -1,4 +1,4 @@
-## Workflow Orchestration
+## Why Workflow Orchestration
 
 ::: {.incremental}
 
@@ -11,7 +11,7 @@
 :::
 
 
-## SPACE Project
+## Kick-off SPACE
 
 Astrophysical Simulations for Exascale Computing ([SPACE](https://www.space-coe.eu/)).
 

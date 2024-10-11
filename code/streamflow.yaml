@@ -1,0 +1,18 @@
+version: v1.0
+
+workflows:
+  workflow1:
+    type: cwl
+    config:
+      file: cwl/workflow.cwl
+      settings: cwl/settings.yml
+    bindings:
+      - step: /
+        target:
+          deployment: python3.12
+
+deployments:
+  python3.12:
+    type: docker
+    config:
+      image: python:3.12
