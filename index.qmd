@@ -1,15 +1,17 @@
-## Outline
+## Agenda
 
-- Workflow Orchestration
+- General Overview to Workflow Orchestration
+- Solutions for Workflow Orchestration
+  - StreamFlow
+  - Flyte
 - HPC vs AI/ML Infrastructure
-- StreamFlow
-- Flyte
-- Object Storage
+- File vs Object Storage
 
 
 {{< include workflows.qmd >}}
 {{< include streamflow.qmd >}}
 {{< include flyte.qmd >}}
+{{< include hpc-ai.qmd >}}
 {{< include storage.qmd >}}
 
 ## Summary
