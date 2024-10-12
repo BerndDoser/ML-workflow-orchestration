@@ -1,5 +1,3 @@
-version: v1.0
-
 workflows:
   workflow1:
     type: cwl

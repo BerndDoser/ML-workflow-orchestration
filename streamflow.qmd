@@ -37,9 +37,19 @@
 
 ## StreamFlow Deployment
 
-``` {.yaml filename="streamflow.yaml"}
-{{< include code/streamflow.yaml >}}
+::: {layout='[1,1]'}
+::: n1
+``` {.yaml filename="streamflow_container.yaml"}
+{{< include code/streamflow_container.yaml >}}
 ```
+:::
+
+::: n2
+``` {.yaml filename="streamflow_slurm.yaml"}
+{{< include code/streamflow_slurm.yaml >}}
+```
+:::
+:::
 
 
 ## Supported Features
