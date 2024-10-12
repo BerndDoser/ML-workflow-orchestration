@@ -1,31 +1,19 @@
-## Why Workflow Orchestration
-
-::: {.incremental}
-
-- **Reproducibility**: Ensure your experiments are reproducible by tracking the code, data, model, and environment used in each run.
-- **Resource management**: Manage resources efficiently by running tasks in parallel and optimizing resource usage.
-- **Scalability**: Scale your workflows to handle large datasets and complex pipelines.
-- **Monitoring**: Track the progress of workflows and monitor their performance and results.
-- **Collaboration**: Enable collaboration between team members by sharing code, data, and results.
-
-:::
-
-
-##  Kick-off
+##  Motivation by [SPACE CoE](https://www.space-coe.eu/)
 
 ![](images/SPACE_logo.png){.absolute top=0 right=0 width=250}
 
-Astrophysical Simulations for Exascale Computing ([SPACE CoE](https://www.space-coe.eu/))
+**Goal**: Astrophysical Simulations for Exascale Computing\
+**Challenge**: Analyze large-scale simulation data of Petabytes\
+**Solution**: Efficient ML-based workflows using dimensionality reduction
 
-::: {layout='[1,2.2,0.5]' layout-valign=center}
+::: {layout='[1,2.2,0.7]' layout-valign=center}
 ::: n1
 ![](images/illustris.png)
 
 ::: {.small}
 ::: {.callout-note icon=false}
 ## Simulation Data (~ PetaBytes)
-- Time snapshots storing particle positions, velocities, and other properties
-- OpenGADGET (IllustrisTNG), PLUTO, RAMSES, ...
+Time snapshots storing particle positions, velocities, and other properties, e.g. from OpenGADGET (IllustrisTNG), PLUTO, RAMSES, ...
 :::
 :::
 :::
@@ -44,11 +32,25 @@ Spherinator & HiPSter
 :::
 :::
 :::
-:::{.font-size=30px}
+
+::: aside
 K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
 :::
 
 <!-- ![](images/Space-partners-new.png){fig-align="center"} -->
+
+
+## Why Workflow Orchestration?
+
+::: {.incremental}
+
+- **Reproducibility**: Ensure your experiments are reproducible by tracking the code, data, model, and environment used in each run.
+- **Resource management**: Manage resources efficiently by running tasks in parallel and optimizing resource usage.
+- **Scalability**: Scale your workflows to handle large datasets and complex pipelines.
+- **Monitoring**: Track the progress of workflows and monitor their performance and results.
+- **Collaboration**: Enable collaboration between team members by sharing code, data, and results.
+
+:::
 
 
 ## Example Workflow
