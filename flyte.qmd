@@ -6,11 +6,12 @@
 
 ## Flyte Nomenclature
 
-- **Project**: A collection of workflows, tasks, and executions.
+- **Project**: A collection of workflows, tasks, and executions
 - **Domain**: Deployment level (`development`, `staging`, and `production`)
-- **Workflow**: A collection (directed acyclic graph) of tasks.
-- **Task**: Fully independent unit of work.
-- **Execution**: A run of a workflow.
+- **Workflow**: A collection (directed acyclic graph) of tasks
+- **Task**: Fully independent unit of work
+- **Execution**: A run of a task or workflow
+- **Launch Plan**: A scheduled execution of a workflow
 
 
 ## Flyte Architecture
@@ -40,6 +41,11 @@ def mean(values: List[float]) -> float:
     return sum(values) / len(values)
 ```
 
+## Flyte Workflows
+
+todo ...
+
+
 ## Containerized Tasks
 
 A Flyte task operates within its own container and runs on a Kubernetes pod
@@ -49,8 +55,8 @@ A Flyte task operates within its own container and runs on a Kubernetes pod
 
 ## ImageSpec
 
-- Customize the container image without a Dockerfile.
-- Container image is build at registration and pushed to the container registry.
+- Customize the container image without a Dockerfile
+- Container image is build at registration and pushed to a container registry
 
 ```python
 custom_image = ImageSpec(
@@ -62,6 +68,15 @@ custom_image = ImageSpec(
 )
 ```
 
-## Flyte Tutorial
 
-[PyTorch MNIST training](https://docs.flyte.org/en/latest/flytesnacks/examples/mnist_classifier/pytorch_single_node_and_gpu.html)
+## FlyteConsole (WebUI)
+
+- Launch and relaunch tasks and workflows
+- View versioned tasks and workflows
+- Inspect executions through inputs, outputs, logs, and graphs
+- Clone and recover executions
+
+
+## Flyte Demo: PyTorch MNIST Classifier 
+
+[Source](https://docs.flyte.org/en/latest/flytesnacks/examples/mnist_classifier/pytorch_single_node_and_gpu.html)
