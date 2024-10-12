@@ -11,20 +11,44 @@
 :::
 
 
-## Kick-off SPACE
+##  Kick-off
 
-Astrophysical Simulations for Exascale Computing ([SPACE](https://www.space-coe.eu/)).
+![](images/SPACE_logo.png){.absolute top=0 right=0 width=250}
+
+Astrophysical Simulations for Exascale Computing ([SPACE CoE](https://www.space-coe.eu/))
 
 ::: {layout='[1,2.2,0.5]' layout-valign=center}
+::: n1
 ![](images/illustris.png)
-IllustrisTNG
 
-![](images/projectx.svg)
-
-![](images/P404_f2.png)
-[Spherinator & HiPSter](https://space.h-its.org/)
+::: {.small}
+::: {.callout-note icon=false}
+## Simulation Data (~ PetaBytes)
+- Time snapshots storing particle positions, velocities, and other properties
+- OpenGADGET (IllustrisTNG), PLUTO, RAMSES, ...
+:::
+:::
 :::
 
+::: n2
+![](images/projectx.svg)
+:::
+
+::: n3
+![](images/P404_f2.png)
+
+::: {.small}
+Spherinator & HiPSter
+
+[space.h-its.org](https://space.h-its.org/)
+:::
+:::
+:::
+:::{.font-size=30px}
+K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
+:::
+
+<!-- ![](images/Space-partners-new.png){fig-align="center"} -->
 
 
 ## Example Workflow
