@@ -1,19 +1,24 @@
-##  Motivation by [SPACE CoE](https://www.space-coe.eu/)
+## Motivation by [SPACE CoE](https://www.space-coe.eu/)
 
-![](images/SPACE_logo.png){.absolute top=0 right=0 width=250}
+![](images/SPACE_logo.png){.absolute top=-20 right=0 width=200}
 
+::: {.fs34}
 **Goal**: Astrophysical Simulations for Exascale Computing\
 **Challenge**: Analyze large-scale simulation data of Petabytes\
 **Solution**: Efficient ML-based workflows using dimensionality reduction
+:::
 
 ::: {layout='[1,2.4,0.7]' layout-valign=center}
 ::: n1
 ![](images/illustris.png)
 
-::: {.small}
+::: {.fs20}
 ::: {.callout-note icon=false}
+
 ## Simulation Data (~ PetaBytes)
+
 Time snapshots storing particle positions, velocities, and other properties, e.g. from OpenGADGET (IllustrisTNG)
+
 :::
 :::
 :::
@@ -25,7 +30,7 @@ Time snapshots storing particle positions, velocities, and other properties, e.g
 ::: n3
 ![](images/P404_f2.png)
 
-::: {.small}
+::: {.fs20}
 Spherinator & HiPSter
 
 [space.h-its.org](https://space.h-its.org/)
@@ -75,4 +80,5 @@ K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
 - General purpose programming languages (e.g Python)
 - Domain specific language (e.g. [Common Workflow Language](https://www.commonwl.org/))
 - Graphical user interface (e.g. [ReactFlow](https://reactflow.dev/) @ [fal.ai](https://fal.ai/dashboard))
-![](images/fal_ai.png){width="1300"}
+
+![](images/fal_ai.png){fig-align="center"}
