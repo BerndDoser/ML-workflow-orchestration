@@ -20,7 +20,7 @@
 ::: n1
 StreamFlow
 
-::: {.callout-note icon=false}
+::: {.callout-tip icon=false}
 ## Pros
 - Common workflow language (CWL)
 - Supports deployment on Slurm and Kubernetes
@@ -36,7 +36,7 @@ StreamFlow
 ::: n2
 Flyte
 
-::: {.callout-note icon=false}
+::: {.callout-tip icon=false}
 ## Pros
 - General-purpose workflow orchestrator leveraging Kubernetes
 - Robust task interconnections with static typing
@@ -57,5 +57,9 @@ Flyte
 
 ## Summary II
 
-- **HPC** and **AI/ML** infrastructure have different requirements
-- **MinIO Object Storage** is a scalable storage solution for unstructured data
+- **HPC** and **AI/ML** workflows have different requirements to the infrastructure
+- **Object Storage** is a scalable storage solution for unstructured data and provide fast access to large files
+- **MinIO** is an open-source object storage solution that can be deployed on-premises
+
+
+# Questions?
