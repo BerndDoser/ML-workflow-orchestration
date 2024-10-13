@@ -1,18 +1,35 @@
 class: Workflow
 
 inputs:
-  config:
-    type: File?
+  epochs: int
+  train_dataset: Directory
+  eval_dataset: Directory
+  train_script: File
+  eval_script: File
 
 outputs:
-  outdir:
-    type: Directory
-    outputSource: create_images/hipster
+  model:
+    type: File
+    outputSource: train/model
+  accuracy:
+    type: string
+    outputSource: eval/accuracy
 
 steps:
-  create_images:
-    run: tasks/create_images.cwl
+  train:
+    run: train.cwl
     in:
-      config: config
+      train_script:train_script
+      epochs:epochs
+      dataset:train_dataset
     out:
-      - hipster
+      - model
+      - loss
+  evaluate:
+    run: eval.cwl
+    in:
+      eval_script:eval_script
+      dataset:eval_dataset
+      model:train/model
+    out:
+      - accuracy
