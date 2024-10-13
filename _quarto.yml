@@ -12,6 +12,7 @@ title-slide-attributes:
 
 css: styles.css
 # theme: league
+theme: [default, custom.scss]
 
 format:
   revealjs:
@@ -19,4 +20,5 @@ format:
     footer: "ML Workflow Orchestration (Bernd Doser, HITS)"
     slide-number: true
     highlight-style: a11y
-    width: 1300
+    code-block-height: 650px
+    # width: 1300

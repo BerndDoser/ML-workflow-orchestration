@@ -60,7 +60,7 @@ From [StreamFlow documentation](https://streamflow.di.unito.it/documentation/0.2
 
 ## CWL Implementations in Production
 
-![](images/cwl-implementations.png){height=500 fig-align="center"}
+![](images/cwl-implementations.png){fig-align="center"}
 
 ::: aside
 From [CWL Documentation](https://www.commonwl.org/implementations/)
@@ -69,9 +69,10 @@ From [CWL Documentation](https://www.commonwl.org/implementations/)
 
 ## Visualizing CWL
 
-![](images/rRNA_selection_cwl.svg){height=700 fig-align="center"}
+![](images/rRNA_selection_cwl.svg){fig-align="center"}
 
 [Try it out!](https://view.commonwl.org/){top=-100px}
+
 
 ## StreamFlow Deployment
 
@@ -88,6 +89,11 @@ From [CWL Documentation](https://www.commonwl.org/implementations/)
 ```
 :::
 :::
+
+
+## StreamFlow: Cross-Facility Federated Learning
+
+![](images/streamflow-xffl.webp){fig-align="center"}
 
 
 ## StreamFlow Demo
