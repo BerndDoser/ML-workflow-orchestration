@@ -1,3 +1,4 @@
+# ![](images/favicon-flyte-docs.webp){.logo_h1_inline} Flyte
 ## ![](images/favicon-flyte-docs.webp){.logo_h2_inline} Flyte
 
 - [Flyte](https://flyte.org/) is a highly scalable cloud-native workflow orchestration platform on top of containers and kubernetes
@@ -14,7 +15,12 @@
 - **Launch Plan**: A scheduled execution of a workflow
 
 
-## Flyte Architecture
+## Flyte Test Setup
+
+![](images/flyte-test-setup.svg){fig-align="center"}
+
+Thanks to Martin Wendt (ITS) for providing a comprehensive testing setup including Kubernetes (k3s), Flyte, and MinIO.
+
 
 ## Flyte Command-line Interface
 
@@ -28,7 +34,7 @@ flytectl create project --name seminar --id seminar --description "seminar showc
 
 ## Flyte Tasks
 
-- Tasks are strongly typed (See [Flyte Type Mapping](https://docs.flyte.org/en/latest/user_guide/data_types_and_io/index.html#data-types-and-io))
+- Tasks are strongly typed (see [Flyte Type Mapping](https://docs.flyte.org/en/latest/user_guide/data_types_and_io/index.html#data-types-and-io))
 - Tasks are regular Python function decorated with `@task` 
 - Tasks are designed to be idempotent (multiple executions don't change the result).
 
@@ -50,7 +56,7 @@ todo ...
 
 A Flyte task operates within its own container and runs on a Kubernetes pod
 
-![](images/union_tasks.png)
+![](images/union_tasks.png){fig-align="center"}
 
 
 ## ImageSpec
@@ -77,6 +83,7 @@ custom_image = ImageSpec(
 - Clone and recover executions
 
 
-## Flyte Demo: PyTorch MNIST Classifier 
+## Flyte Demo
 
-[Source](https://docs.flyte.org/en/latest/flytesnacks/examples/mnist_classifier/pytorch_single_node_and_gpu.html)
+- [GitHub repo](https://github.com/BerndDoser/flyte-mnist)
+- [PyTorch MNIST Classifier](https://docs.flyte.org/en/latest/flytesnacks/examples/mnist_classifier/pytorch_single_node_and_gpu.html)

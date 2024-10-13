@@ -53,12 +53,20 @@ K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
 :::
 
 
-## Example Workflow
+## General Requirements for Workflows
+
+  - Parallelization: Run independent tasks automatically in parallel 
+  - Caching: Avoid recomputing successful tasks
+  - Nesting: Reuse workflows as tasks
+  - Looping: Repeat tasks based on conditions
+  - Scattering: Distribute data to multiple tasks
+  - Conditionals: Branching based on conditions
+
 
 ![](images/flyte-ui_mnist-workflow.png)
 
 
-## Workflow Orchestration Management
+## Options to Generate a Workflow
 
 - General purpose programming languages (e.g Python)
 - Domain specific language (e.g. [Common Workflow Language](https://www.commonwl.org/))

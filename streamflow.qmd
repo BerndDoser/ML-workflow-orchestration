@@ -1,9 +1,22 @@
+# StreamFlow
 ## StreamFlow
 
-- Relies on the [Common Workflow Language](https://www.commonwl.org/) (CWL)
-- [BioExcel CoE Building Blocks](https://bioexcel.eu/biobb-new/) is using CWL for interoperable and reproducible biomolecular simulation workflows.
-- StreamFlow connects CWL with HPC
-- Supports Containers (Singularity), Kubernetes and SLURM
+- [StreamFlow](https://streamflow.di.unito.it/documentation/0.2/) is a general framework for workflow orchestration
+- Relies on the [Common Workflow Language](https://www.commonwl.org/) (CWL)\
+  and connects the CWL with a deployment model
+- Workflows can be deployed to different environments:
+  - Containers/Singularity
+  - Slurm
+  - Kubernetes
+
+::: {.callout-note}
+[BioExcel Building Blocks](https://bioexcel.eu/biobb-new/) is a **showpiece** using CWL for biomolecular simulation.
+:::
+
+
+## StreamFlow Architecture
+
+![](images/streamflow-model.png){fig-align="center"}
 
 
 ## Common Workflow Language (CWL)
@@ -25,16 +38,6 @@
 :::
 
 
-## Visualizing CWL
-
-- [Web service for visualization](https://view.commonwl.org/)
-
-
-## StreamFlow Architecture
-
-![](images/streamflow-model.png){fig-align="center"}
-
-
 ## StreamFlow Deployment
 
 ::: {layout='[1,1]'}
@@ -52,14 +55,11 @@
 :::
 
 
-## Supported Features
+## StreamFlow Demo
 
-  - [Parallelization](https://www.commonwl.org/features/#parallelization-and-scale-with-cwl)
-  - [Caching](https://www.commonwl.org/user_guide/topics/troubleshooting.html#run-cwltool-with-cachedir)
-    (vs [Flyte caching](https://docs.flyte.org/en/latest/user_guide/development_lifecycle/caching.html#caching))
-  - Nested workflows
-  - Looping / scattering tasks
-  - Conditional workflows
+- [GitHub repo](https://github.com/BerndDoser/streamflow-example)
 
 
+<!-- ## Visualizing CWL
 
+- [Web service for visualization](https://view.commonwl.org/) -->

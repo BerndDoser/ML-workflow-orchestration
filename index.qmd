@@ -4,8 +4,9 @@
 - Solutions for Workflow Orchestration
   - StreamFlow
   - Flyte
-- HPC vs AI/ML Infrastructure
-- File vs Object Storage
+- Infrastructure for Machine Learning Workflows
+  - HPC vs AI/ML
+  - File vs Object Storage
 
 
 {{< include workflows.qmd >}}
