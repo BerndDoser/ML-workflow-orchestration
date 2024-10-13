@@ -5,7 +5,7 @@
 - Relies on the [Common Workflow Language](https://www.commonwl.org/) (CWL)\
   and connects the CWL with a deployment model
 - Workflows can be deployed to different environments:
-  - Containers/Singularity
+  - Containers / Singularity
   - Slurm
   - Kubernetes
 
@@ -16,7 +16,29 @@
 
 ## StreamFlow Architecture
 
-![](images/streamflow-model.png){fig-align="center"}
+![](images/streamflow-model.png){height=500 fig-align="center"}
+
+::: aside
+From [StreamFlow documentation](https://streamflow.di.unito.it/documentation/0.2/guide/architecture.html)
+:::
+
+
+## Common Workflow Language (CWL)
+
+::: {layout='[1,1]'}
+::: n1
+``` {.yaml filename="workflow.cwl"}
+{{< include code/workflow.cwl >}}
+```
+:::
+::: n2
+- Declare the workflow in a YAML file
+- Three sections:
+  - inputs
+  - outputs
+  - steps
+:::
+:::
 
 
 ## Common Workflow Language (CWL)
@@ -38,6 +60,21 @@
 :::
 
 
+## CWL Implementations in Production
+
+![](images/cwl-implementations.png){height=500 fig-align="center"}
+
+::: aside
+From [CWL Documentation](https://www.commonwl.org/implementations/)
+:::
+
+
+## Visualizing CWL
+
+![](images/rRNA_selection_cwl.svg){height=700 fig-align="center"}
+
+[Try it out!](https://view.commonwl.org/){top=-100px}
+
 ## StreamFlow Deployment
 
 ::: {layout='[1,1]'}
@@ -57,9 +94,7 @@
 
 ## StreamFlow Demo
 
-- [GitHub repo](https://github.com/BerndDoser/streamflow-example)
+- [GitHub repo to Seminar example](https://github.com/BerndDoser/streamflow-example)
+- [Example of the developers of StreamFlow](https://github.com/alpha-unito/streamflow-fl)
 
 
-<!-- ## Visualizing CWL
-
-- [Web service for visualization](https://view.commonwl.org/) -->
