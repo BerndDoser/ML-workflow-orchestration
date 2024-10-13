@@ -40,7 +40,7 @@
 ![](./images/minio.png)
 
 
-## {background-image="images/minio-web.png"}
+## {background-image="images/minio-web.png" background-size=contain}
 
 
 ## Streaming DataLoader
