@@ -20,5 +20,5 @@ format:
     footer: "ML Workflow Orchestration (Bernd Doser, HITS)"
     slide-number: true
     highlight-style: a11y
-    code-block-height: 650px
+    # code-block-height: 650px
     # width: 1300
