@@ -12,25 +12,50 @@
 {{< include workflows.qmd >}}
 {{< include streamflow.qmd >}}
 {{< include flyte.qmd >}}
+
+
+## Summary I
+
+::: {layout='[1,1]'}
+::: n1
+StreamFlow
+
+::: {.callout-note icon=false}
+## Pros
+- Common workflow language (CWL)
+- Supports deployment on Slurm and Kubernetes
+- No special infrastructure setup needed
+:::
+::: {.callout-important icon=false}
+## Cons
+- Input and output bindings are redundant and error-prone
+- Monitoring and visualization tools are outdated and not user-friendly
+:::
+:::
+
+::: n2
+Flyte
+
+::: {.callout-note icon=false}
+## Pros
+- General-purpose workflow orchestrator leveraging Kubernetes
+- Robust task interconnections with static typing
+- Data pipeline driven by object storage
+- Advanced monitoring and visualization features
+:::
+::: {.callout-important icon=false}
+## Cons
+- Requires migration of compute nodes from Slurm to Kubernetes
+:::
+:::
+:::
+
+
 {{< include hpc-ai.qmd >}}
 {{< include storage.qmd >}}
 
-## Summary
 
-::: {layout='[1,1]'}
-::: {.callout-note icon=false}
-## Flyte
-- General-purpose workflow orchestrator that uses Kubernetes and S3 storage
-- Requires hardware resources to be added to the Kubernetes cluster
-:::
+## Summary II
 
-::: {.callout-note icon=false}
-## StreamFlow
-- Common workflow language (CWL)
-- Supports both SLURM and Kubernetes for resource management
-- No special environment needed
-:::
-:::
-
-- **MinIO Object Storage** is a scalable storage solution for unstructured data.
-- **HPC** and **AI/ML** infrastructure have different requirements and technologies.
+- **HPC** and **AI/ML** infrastructure have different requirements
+- **MinIO Object Storage** is a scalable storage solution for unstructured data
