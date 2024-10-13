@@ -11,6 +11,7 @@ title-slide-attributes:
   data-background-opacity: "0.3"
 
 css: styles.css
+# theme: league
 
 format:
   revealjs:
