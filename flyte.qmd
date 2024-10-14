@@ -5,16 +5,6 @@
 - Member of the [Linux Foundation AI & Data](https://lfaidata.foundation/projects/flyte/)
 
 
-## Flyte Nomenclature
-
-- **Project**: A collection of workflows, tasks, and executions
-- **Domain**: Deployment level (`development`, `staging`, and `production`)
-- **Workflow**: A collection (directed acyclic graph) of tasks
-- **Task**: Fully independent unit of work
-- **Execution**: A run of a task or workflow
-- **Launch Plan**: A scheduled execution of a workflow
-
-
 ## Flyte Test Setup
 
 ![](images/flyte-test-setup.svg){fig-align="center"}
@@ -25,11 +15,28 @@ Thanks to Martin Wendt (ITS) for providing a comprehensive testing setup includi
 ## Flyte Command-line Interface
 
 - Start a demo cluster on your local machine
+
+```{.bash code-line-numbers="false"}
+flytectl start demo
+```
+
 - Create a new project
+
 ```{.bash code-line-numbers="false"}
 flytectl create project --name seminar --id seminar --description "seminar showcases"
 ```
+
 - Manage workflows, tasks, and executions
+
+
+## Flyte Concepts
+
+- **Project**: A collection of workflows, tasks, and executions
+- **Domain**: Deployment level (`development`, `staging`, and `production`)
+- **Workflow**: A collection (directed acyclic graph) of tasks
+- **Task**: Fully independent unit of work
+- **Execution**: A run of a task or workflow
+- **Launch Plan**: A scheduled execution of a workflow
 
 
 ## Flyte Tasks
@@ -46,6 +53,7 @@ from flytekit import task
 def mean(values: List[float]) -> float:
     return sum(values) / len(values)
 ```
+
 
 ## Flyte Workflows
 
@@ -91,6 +99,7 @@ def nlp_workflow(target_word: str = "computer") -> [Dict[str, float], float, Dic
 ::: aside
 [Source](https://docs.flyte.org/en/latest/flytesnacks/examples/nlp_processing/word2vec_and_lda.html)
 :::
+
 
 ## Containerized Tasks
 
