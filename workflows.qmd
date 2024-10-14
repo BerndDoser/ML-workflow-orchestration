@@ -65,10 +65,13 @@ K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
 :::
 
 
-## Requirements on Workflows Orchestration
+## Requirements on Workflow Orchestration
 
   - Define execution requirements (e.g. GPUs, CPUs, memory)
   - Control runtime environment with containers
+
+. . .
+
   - Orchestration features
     - Parallelization: Run independent tasks automatically in parallel 
     - Caching: Avoid recomputing successful tasks

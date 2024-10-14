@@ -37,15 +37,22 @@
 
 ## ![](images/minio-logo.svg){.logo_h2_inline} MinIO Object Storage
 
-![](./images/minio.png)
+- [MinIO]() is a high-performance, open source object storage system
+- The API is compatible Amazon S3 cloud storage service
+
+![](./images/minio.png){fig-align="center"}
+
+::: aside
+Source: [MinIO: The Real Reasons Why AI is Built on Object Storage](https://blog.min.io/why-ai-on-object-storage/)
+:::
 
 
 ## {background-image="images/minio-web.png" background-size=contain}
 
 
-## Streaming DataLoader
+<!-- ## Streaming DataLoader
 
 - [Huggingface Streaming](https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable#downloading-and-streaming)
 
 
-## Feed the Beast
+## Feed the Beast -->

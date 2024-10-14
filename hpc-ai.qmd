@@ -5,21 +5,34 @@
 using the prompt 'Visualize two worlds showing the difference between HPC and AI infrastructure']{.top_white}
 
 
-## HPC vs AI/ML Infrastructure {background-image="images/ai_vs_hpc.png" background-opacity=0.2}
+## HPC vs AI/ML Infrastructure {background-image="images/ai_vs_hpc.png" background-opacity=0.1}
 
-::: {layout='[1,1]' layout-valign=center}
+::: {layout='[1,1]'}
 ::: n1
+::: {.callout-tip icon=false}
+## HPC workload
+- Simulations, modeling, and data analysis
+- Large clusters of CPUs and high-speed interconnects
+- Parallel computing (MPI)
 
-- Slurm
-- MPI
-- File Storage
-
+- Scheduling with Slurm
+- Bare-metal compilation
+- Distributed file storage
 :::
+:::
+
 ::: n2
+::: {.callout-tip icon=false}
+## AI/ML workload
+- Training and inference of models
+- Data-intensive tasks
+- Numerous Matrix operations requires accelerators (GPU, TPU, ..)
 
-- Cloud-native
-- Kubernetes
-- Object Storage
-
+- Cloud-native deployment
+- Kubernetes and containers
+- Object storage
 :::
 :::
+:::
+
+Hardware and software requirements differ significantly based on the nature of their workloads and infrastructure.

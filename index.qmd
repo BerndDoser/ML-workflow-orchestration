@@ -20,11 +20,11 @@
 {{< include flyte.qmd >}}
 
 
-## Summary I
+## Summary I {style="font-size: 90%;"}
 
 ::: {layout='[1,1]'}
 ::: n1
-StreamFlow
+**StreamFlow**
 
 ::: {.callout-tip icon=false}
 ## Pros
@@ -40,7 +40,7 @@ StreamFlow
 :::
 
 ::: n2
-Flyte
+**Flyte**
 
 ::: {.callout-tip icon=false}
 ## Pros

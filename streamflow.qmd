@@ -106,7 +106,7 @@ From [CWL Viewer](https://view.commonwl.org/)
 ![](images/streamflow-xffl.webp){fig-align="center"}
 
 ::: aside
-[GitHub](https://github.com/alpha-unito/streamflow-fl)
+Source: [Alpha group, University of Torino](https://github.com/alpha-unito/streamflow-fl)
 :::
 
 
