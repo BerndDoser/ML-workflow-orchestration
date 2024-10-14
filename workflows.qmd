@@ -1,21 +1,24 @@
-## Motivation by [SPACE CoE](https://www.space-coe.eu/)
+## Motivated by [SPACE CoE](https://www.space-coe.eu/)
 
 ![](images/SPACE_logo.png){.absolute top=-20 right=0 width=200}
 
 ::: {.fs34}
-**Goal**: Astrophysical Simulations for Exascale Computing\
-**Challenge**: Analyze large-scale simulation data of Petabytes\
+**Goal**: Astrophysical simulations for exascale computing\
+**Challenge**: Analyze large-size simulation data (~ Petabytes)\
 **Solution**: Efficient ML-based workflows using dimensionality reduction
 :::
 
-::: {layout='[1,2.4,0.7]' layout-valign=center}
+::: {layout='[1,2.4,0.7]'}
 ::: n1
+
+**Input**
+
 ![](images/illustris.png)
 
 ::: {.fs20}
 ::: {.callout-note icon=false}
 
-## Simulation Data (~ PetaBytes)
+## Simulation Data (~ Petabytes)
 
 Time snapshots storing particle positions, velocities, and other properties, e.g. from OpenGADGET (IllustrisTNG)
 
@@ -24,10 +27,14 @@ Time snapshots storing particle positions, velocities, and other properties, e.g
 :::
 
 ::: n2
+**Workflow**
+
 ![](images/projectx.svg)
 :::
 
 ::: n3
+**Output**
+
 ![](images/P404_f2.png)
 
 ::: {.fs20}
@@ -51,14 +58,14 @@ K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
 
 - **Reproducibility**: Ensure your experiments are reproducible by tracking the code, data, model, and environment.
 - **Resource management**: Manage resources efficiently by running tasks in parallel and optimizing resource usage.
-- **Scalability**: Scale your workflows to handle large datasets and complex pipelines.
+- **Scalability**: Scale your workflows to handle large amount of data and complex pipelines.
 - **Monitoring**: Track the progress of workflows and monitor their performance and results.
 - **Collaboration**: Enable collaboration between team members by sharing code, data, and results.
 
 :::
 
 
-## General Requirements for Workflows
+## Requirements on Workflows Orchestration
 
   - Define node requirements (e.g. CPU, memory, GPU)
   - Control runtime environment with containers

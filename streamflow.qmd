@@ -10,7 +10,7 @@
   - Kubernetes
 
 ::: {.callout-note}
-[BioExcel Building Blocks](https://bioexcel.eu/biobb-new/) is a **showpiece** using CWL for biomolecular simulation.
+[BioExcel Building Blocks](https://bioexcel.eu/biobb-new/) is a great example using CWL for biomolecular simulation.
 :::
 
 
@@ -27,10 +27,13 @@ From [StreamFlow documentation](https://streamflow.di.unito.it/documentation/0.2
 
 ::: {layout='[1,1]'}
 ::: n1
+::: {style="font-size: 80%;"}
 ``` {.yaml filename="workflow.cwl"}
 {{< include code/workflow.cwl >}}
 ```
 :::
+:::
+
 ::: n2
 - Declare the workflow in a YAML file
   - `inputs`
@@ -46,14 +49,19 @@ From [StreamFlow documentation](https://streamflow.di.unito.it/documentation/0.2
 
 ::: {layout='[1,1]'}
 ::: n1
+::: {style="font-size: 80%;"}
 ``` {.yaml filename="workflow.cwl"}
 {{< include code/workflow.cwl >}}
 ```
 :::
+:::
+
 ::: n2
+::: {style="font-size: 80%;"}
 ``` {.yaml filename="train.cwl"}
 {{< include code/train.cwl >}}
 ```
+:::
 :::
 :::
 
@@ -67,11 +75,13 @@ From [CWL Documentation](https://www.commonwl.org/implementations/)
 :::
 
 
-## Visualizing CWL
+## Visualizing CWL Graphs
 
 ![](images/rRNA_selection_cwl.svg){fig-align="center"}
 
-[Try it out!](https://view.commonwl.org/){top=-100px}
+::: aside
+From [CWL Viewer](https://view.commonwl.org/)
+:::
 
 
 ## StreamFlow Deployment
@@ -91,14 +101,13 @@ From [CWL Documentation](https://www.commonwl.org/implementations/)
 :::
 
 
-## StreamFlow: Cross-Facility Federated Learning
+## StreamFlow: Federated Learning
 
 ![](images/streamflow-xffl.webp){fig-align="center"}
 
-
-## StreamFlow Demo
-
-- [GitHub repo to Seminar example](https://github.com/BerndDoser/streamflow-example)
-- [Example of the developers of StreamFlow](https://github.com/alpha-unito/streamflow-fl)
+::: aside
+[GitHub](https://github.com/alpha-unito/streamflow-fl)
+:::
 
 
+# [StreamFlow Demo](https://github.com/BerndDoser/streamflow-example)

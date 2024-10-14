@@ -19,6 +19,6 @@ format:
     logo: images/HITS_RGB_eng.jpg
     footer: "ML Workflow Orchestration (Bernd Doser, HITS)"
     slide-number: true
-    highlight-style: a11y
+    # highlight-style: a11y
     # code-block-height: 650px
     # width: 1300

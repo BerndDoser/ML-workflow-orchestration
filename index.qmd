@@ -1,9 +1,15 @@
 ## Agenda
 
-- General Overview to Workflow Orchestration
+- Introduction to Workflow Orchestration
+
+. . .
+
 - Solutions for Workflow Orchestration
   - StreamFlow
   - Flyte
+
+. . .
+
 - Infrastructure for Machine Learning Workflows
   - HPC vs AI/ML
   - File vs Object Storage

@@ -1,5 +1,5 @@
 # Infrastructure for Machine Learning Workflows
-## {background-image="images/ai_vs_hpc.png"}
+## {background-image="images/ai_vs_hpc.png" transition="fade"}
 
 [The background image was generated with FLUX on fal.ai\
 using the prompt 'Visualize two worlds showing the difference between HPC and AI infrastructure']{.top_white}
@@ -10,7 +10,7 @@ using the prompt 'Visualize two worlds showing the difference between HPC and AI
 ::: {layout='[1,1]' layout-valign=center}
 ::: n1
 
-- SLURM
+- Slurm
 - MPI
 - File Storage
 
