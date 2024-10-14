@@ -65,6 +65,18 @@ workflow_outputs = typing.NamedTuple(
 @task
 def generate_processed_corpus() -> List[List[str]]:
 
+@task
+def train_word2vec_model(training_data: List[List[str]], hyperparams: Word2VecModelHyperparams) -> model_file:
+
+@task
+def train_lda_model(corpus: List[List[str]], hyperparams: LDAModelHyperparams) -> Dict[int, List[str]]:
+
+@task
+def word_similarities(model_ser: FlyteFile[MODELSER_NLP], word: str) -> Dict[str, float]:
+
+@task
+def word_movers_distance(model_ser: FlyteFile[MODELSER_NLP]) -> float:
+
 @workflow
 def nlp_workflow(target_word: str = "computer") -> [Dict[str, float], float, Dict[int, List[str]]]:
     corpus = generate_processed_corpus()

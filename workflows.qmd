@@ -67,19 +67,20 @@ K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
 
 ## Requirements on Workflows Orchestration
 
-  - Define node requirements (e.g. CPU, memory, GPU)
+  - Define execution requirements (e.g. GPUs, CPUs, memory)
   - Control runtime environment with containers
-  - Underlying data pipeline?
+  - Orchestration features
+    - Parallelization: Run independent tasks automatically in parallel 
+    - Caching: Avoid recomputing successful tasks
+    - Nesting: Reuse workflows as tasks
+    - Looping: Repeat tasks based on conditions
+    - Scattering: Distribute data to multiple tasks
+    - Conditionals: Branching based on conditions
 
-  - Parallelization: Run independent tasks automatically in parallel 
-  - Caching: Avoid recomputing successful tasks
-  - Nesting: Reuse workflows as tasks
-  - Looping: Repeat tasks based on conditions
-  - Scattering: Distribute data to multiple tasks
-  - Conditionals: Branching based on conditions
 
+## Machine Learning Workflow Example
 
-![](images/flyte-ui_mnist-workflow.png)
+![](images/ml-workflow-example.svg){fig-align="center"}
 
 
 ## Options to Generate a Workflow
