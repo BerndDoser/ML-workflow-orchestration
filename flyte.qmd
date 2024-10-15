@@ -3,13 +3,16 @@
 
 - [Flyte](https://flyte.org/) is a highly scalable cloud-native workflow orchestration platform on top of containers and kubernetes
 - Member of the [Linux Foundation AI & Data](https://lfaidata.foundation/projects/flyte/)
-
+- Strongly typed interfaces make it robust
+- Supports a wide range of programming languages
+- Data visualization and monitoring tools ([FlyteDeck](https://flyte.org/features#data-visualization))
+- Large community and active development
 
 ## Flyte Test Setup
 
 ![](images/flyte-test-setup.svg){fig-align="center"}
 
-Thanks to Martin Wendt (ITS) for providing a comprehensive testing setup including Kubernetes (k3s), Flyte, and MinIO.
+Thanks to **Martin Wendt** (ITS) for providing a comprehensive testing setup including Kubernetes (k3s), Flyte, and MinIO.
 
 
 ## Flyte Command-line Interface
