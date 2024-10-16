@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Bernd Doser">
+  <title>Machine Learning Workflow Orchestration</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="images/ai_workflow2.png" data-background-opacity="0.3" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">Machine Learning Workflow Orchestration</h1>
+  <p class="subtitle">Flyte &amp; StreamFlow</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Bernd Doser 
+</div>
+        <p class="quarto-title-affiliation">
+            <a href="https://h-its.org">HITS</a>
+          </p>
+    </div>
+</div>
+
+  <p class="date">October 2024</p>
+</section>
+<section id="agenda" class="slide level2">
+<h2>Agenda</h2>
+<ul>
+<li>Introduction to Workflow Orchestration</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Solutions for Workflow Orchestration
+<ul>
+<li>StreamFlow</li>
+<li>Flyte</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Infrastructure for Machine Learning Workflows
+<ul>
+<li>HPC vs AI/ML</li>
+<li>File vs Object Storage</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="motivated-by-space-coe" class="slide level2">
+<h2>Motivated by <a href="https://www.space-coe.eu/">SPACE CoE</a></h2>
+<p><img data-src="images/SPACE_logo.png" class="absolute" style="top: -20px; right: 0px; width: 200px; "></p>
+<div class="fs34">
+<p><strong>Goal</strong>: Astrophysical simulations for exascale computing<br>
+<strong>Challenge</strong>: Analyze large-size simulation data (~ Petabytes)<br>
+<strong>Solution</strong>: Efficient ML-based workflows using dimensionality reduction</p>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[1,2.4,0.7]">
+<div class="quarto-layout-row">
+<div class="n1 quarto-layout-cell" style="flex-basis: 24.4%;justify-content: center;">
+<p><strong>Input</strong></p>
+<p><img data-src="images/illustris.png"></p>
+<div class="fs20">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Simulation Data (~ Petabytes)</strong></p>
+</div>
+<div class="callout-content">
+<p>Time snapshots storing particle positions, velocities, and other properties, e.g.&nbsp;from OpenGADGET (IllustrisTNG)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="n2 quarto-layout-cell" style="flex-basis: 58.5%;justify-content: center;">
+<p><strong>Workflow</strong></p>
+<p><img data-src="images/projectx.svg"></p>
+</div>
+<div class="n3 quarto-layout-cell" style="flex-basis: 17.1%;justify-content: center;">
+<p><strong>Output</strong></p>
+<p><img data-src="images/P404_f2.png"></p>
+<div class="fs20">
+<p>Spherinator &amp; HiPSter</p>
+<p><a href="https://space.h-its.org/">space.h-its.org</a></p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ![](images/Space-partners-new.png){fig-align="center"} -->
+<aside><div>
+<p>K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez <a href="">ADASS (2024)</a>.</p>
+</div></aside></section>
+<section id="why-workflow-orchestration" class="slide level2">
+<h2>Why Workflow Orchestration?</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Reproducibility</strong>: Ensure your experiments are reproducible by tracking the code, data, model, and environment.</li>
+<li class="fragment"><strong>Resource management</strong>: Manage resources efficiently by running tasks in parallel and optimizing resource usage.</li>
+<li class="fragment"><strong>Scalability</strong>: Scale your workflows to handle large amount of data and complex pipelines.</li>
+<li class="fragment"><strong>Monitoring</strong>: Track the progress of workflows and monitor their performance and results.</li>
+<li class="fragment"><strong>Collaboration</strong>: Enable collaboration between team members by sharing code, data, and results.</li>
+</ul>
+</div>
+</section>
+<section id="requirements-on-workflow-orchestration" class="slide level2">
+<h2>Requirements on Workflow Orchestration</h2>
+<ul>
+<li>Define execution requirements (e.g.&nbsp;GPUs, CPUs, memory)</li>
+<li>Control runtime environment with containers</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Orchestration features
+<ul>
+<li>Parallelization: Run independent tasks automatically in parallel</li>
+<li>Caching: Avoid recomputing successful tasks</li>
+<li>Nesting: Reuse workflows as tasks</li>
+<li>Looping: Repeat tasks based on conditions</li>
+<li>Scattering: Distribute data to multiple tasks</li>
+<li>Conditionals: Branching based on conditions</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="machine-learning-workflow-example" class="slide level2">
+<h2>Machine Learning Workflow Example</h2>
+
+<img data-src="images/ml-workflow-example.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="options-to-generate-a-workflow" class="slide level2">
+<h2>Options to Generate a Workflow</h2>
+<ul>
+<li>General purpose programming languages (e.g Python)</li>
+<li>Domain specific language (e.g.&nbsp;<a href="https://www.commonwl.org/">Common Workflow Language</a>)</li>
+<li>Graphical user interface (e.g.&nbsp;<a href="https://reactflow.dev/">ReactFlow</a> @ <a href="https://fal.ai/dashboard">fal.ai</a>)</li>
+</ul>
+
+<img data-src="images/fal_ai.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section>
+<section id="streamflow" class="title-slide slide level1 center">
+<h1>StreamFlow</h1>
+
+</section>
+<section id="streamflow-1" class="slide level2">
+<h2>StreamFlow</h2>
+<ul>
+<li><a href="https://streamflow.di.unito.it/documentation/0.2/">StreamFlow</a> is a general framework for workflow orchestration</li>
+<li>Relies on the <a href="https://www.commonwl.org/">Common Workflow Language</a> (CWL)<br>
+and connects the CWL with a deployment model</li>
+<li>Workflows can be deployed to different environments:
+<ul>
+<li>Containers / Singularity</li>
+<li>Slurm</li>
+<li>Kubernetes</li>
+</ul></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><a href="https://bioexcel.eu/biobb-new/">BioExcel Building Blocks</a> is a great example using CWL for biomolecular simulation.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="common-workflow-language-cwl" class="slide level2">
+<h2>Common Workflow Language (CWL)</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="n1 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div style="font-size: 80%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>workflow.cwl</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="workflow.cwl"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href=""></a><span class="fu">class</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href=""></a><span class="at">  </span><span class="fu">epochs</span><span class="kw">:</span><span class="at"> int</span></span>
+<span id="cb1-5"><a href=""></a><span class="at">  </span><span class="fu">train_dataset</span><span class="kw">:</span><span class="at"> Directory</span></span>
+<span id="cb1-6"><a href=""></a><span class="at">  </span><span class="fu">eval_dataset</span><span class="kw">:</span><span class="at"> Directory</span></span>
+<span id="cb1-7"><a href=""></a><span class="at">  </span><span class="fu">train_script</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb1-8"><a href=""></a><span class="at">  </span><span class="fu">eval_script</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a><span class="fu">outputs</span><span class="kw">:</span></span>
+<span id="cb1-11"><a href=""></a><span class="at">  </span><span class="fu">model</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb1-13"><a href=""></a><span class="at">    </span><span class="fu">outputSource</span><span class="kw">:</span><span class="at"> train/model</span></span>
+<span id="cb1-14"><a href=""></a><span class="at">  </span><span class="fu">accuracy</span><span class="kw">:</span></span>
+<span id="cb1-15"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb1-16"><a href=""></a><span class="at">    </span><span class="fu">outputSource</span><span class="kw">:</span><span class="at"> eval/accuracy</span></span>
+<span id="cb1-17"><a href=""></a></span>
+<span id="cb1-18"><a href=""></a><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb1-19"><a href=""></a><span class="at">  </span><span class="fu">train</span><span class="kw">:</span></span>
+<span id="cb1-20"><a href=""></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> train.cwl</span></span>
+<span id="cb1-21"><a href=""></a><span class="at">    </span><span class="fu">in</span><span class="kw">:</span></span>
+<span id="cb1-22"><a href=""></a><span class="at">      train_script:train_script</span></span>
+<span id="cb1-23"><a href=""></a><span class="at">      epochs:epochs</span></span>
+<span id="cb1-24"><a href=""></a><span class="at">      dataset:train_dataset</span></span>
+<span id="cb1-25"><a href=""></a><span class="at">    </span><span class="fu">out</span><span class="kw">:</span></span>
+<span id="cb1-26"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> model</span></span>
+<span id="cb1-27"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> loss</span></span>
+<span id="cb1-28"><a href=""></a><span class="at">  </span><span class="fu">evaluate</span><span class="kw">:</span></span>
+<span id="cb1-29"><a href=""></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> eval.cwl</span></span>
+<span id="cb1-30"><a href=""></a><span class="at">    </span><span class="fu">in</span><span class="kw">:</span></span>
+<span id="cb1-31"><a href=""></a><span class="at">      eval_script:eval_script</span></span>
+<span id="cb1-32"><a href=""></a><span class="at">      dataset:eval_dataset</span></span>
+<span id="cb1-33"><a href=""></a><span class="at">      model:train/model</span></span>
+<span id="cb1-34"><a href=""></a><span class="at">    </span><span class="fu">out</span><span class="kw">:</span></span>
+<span id="cb1-35"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> accuracy</span></span>
+<span id="cb1-36"><a href=""></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="n2 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<ul>
+<li>Declare the workflow in a YAML file
+<ul>
+<li><code>inputs</code></li>
+<li><code>outputs</code></li>
+<li><code>steps</code></li>
+</ul></li>
+<li>Inputs and outputs are passed between steps and must be compatible</li>
+<li>Workflows can be shared and reused</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="common-workflow-language-cwl-1" class="slide level2">
+<h2>Common Workflow Language (CWL)</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="n1 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div style="font-size: 80%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>workflow.cwl</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="workflow.cwl"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href=""></a><span class="fu">class</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href=""></a><span class="at">  </span><span class="fu">epochs</span><span class="kw">:</span><span class="at"> int</span></span>
+<span id="cb2-5"><a href=""></a><span class="at">  </span><span class="fu">train_dataset</span><span class="kw">:</span><span class="at"> Directory</span></span>
+<span id="cb2-6"><a href=""></a><span class="at">  </span><span class="fu">eval_dataset</span><span class="kw">:</span><span class="at"> Directory</span></span>
+<span id="cb2-7"><a href=""></a><span class="at">  </span><span class="fu">train_script</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb2-8"><a href=""></a><span class="at">  </span><span class="fu">eval_script</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb2-9"><a href=""></a></span>
+<span id="cb2-10"><a href=""></a><span class="fu">outputs</span><span class="kw">:</span></span>
+<span id="cb2-11"><a href=""></a><span class="at">  </span><span class="fu">model</span><span class="kw">:</span></span>
+<span id="cb2-12"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb2-13"><a href=""></a><span class="at">    </span><span class="fu">outputSource</span><span class="kw">:</span><span class="at"> train/model</span></span>
+<span id="cb2-14"><a href=""></a><span class="at">  </span><span class="fu">accuracy</span><span class="kw">:</span></span>
+<span id="cb2-15"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb2-16"><a href=""></a><span class="at">    </span><span class="fu">outputSource</span><span class="kw">:</span><span class="at"> eval/accuracy</span></span>
+<span id="cb2-17"><a href=""></a></span>
+<span id="cb2-18"><a href=""></a><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb2-19"><a href=""></a><span class="at">  </span><span class="fu">train</span><span class="kw">:</span></span>
+<span id="cb2-20"><a href=""></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> train.cwl</span></span>
+<span id="cb2-21"><a href=""></a><span class="at">    </span><span class="fu">in</span><span class="kw">:</span></span>
+<span id="cb2-22"><a href=""></a><span class="at">      train_script:train_script</span></span>
+<span id="cb2-23"><a href=""></a><span class="at">      epochs:epochs</span></span>
+<span id="cb2-24"><a href=""></a><span class="at">      dataset:train_dataset</span></span>
+<span id="cb2-25"><a href=""></a><span class="at">    </span><span class="fu">out</span><span class="kw">:</span></span>
+<span id="cb2-26"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> model</span></span>
+<span id="cb2-27"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> loss</span></span>
+<span id="cb2-28"><a href=""></a><span class="at">  </span><span class="fu">evaluate</span><span class="kw">:</span></span>
+<span id="cb2-29"><a href=""></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> eval.cwl</span></span>
+<span id="cb2-30"><a href=""></a><span class="at">    </span><span class="fu">in</span><span class="kw">:</span></span>
+<span id="cb2-31"><a href=""></a><span class="at">      eval_script:eval_script</span></span>
+<span id="cb2-32"><a href=""></a><span class="at">      dataset:eval_dataset</span></span>
+<span id="cb2-33"><a href=""></a><span class="at">      model:train/model</span></span>
+<span id="cb2-34"><a href=""></a><span class="at">    </span><span class="fu">out</span><span class="kw">:</span></span>
+<span id="cb2-35"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> accuracy</span></span>
+<span id="cb2-36"><a href=""></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="n2 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div style="font-size: 80%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>train.cwl</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="train.cwl"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="fu">class</span><span class="kw">:</span><span class="at"> CommandLineTool</span></span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a><span class="fu">baseCommand</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">python</span><span class="kw">]</span></span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href=""></a><span class="at">  </span><span class="fu">train_script</span><span class="kw">:</span></span>
+<span id="cb3-7"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb3-8"><a href=""></a><span class="at">    </span><span class="fu">inputBinding</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href=""></a><span class="at">      </span><span class="fu">position</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb3-10"><a href=""></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span></span>
+<span id="cb3-11"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Directory</span></span>
+<span id="cb3-12"><a href=""></a><span class="at">    </span><span class="fu">inputBinding</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href=""></a><span class="at">      </span><span class="fu">position</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb3-14"><a href=""></a><span class="at">      </span><span class="fu">prefix</span><span class="kw">:</span><span class="at"> --dataset</span></span>
+<span id="cb3-15"><a href=""></a><span class="at">  </span><span class="fu">epochs</span><span class="kw">:</span></span>
+<span id="cb3-16"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> int</span></span>
+<span id="cb3-17"><a href=""></a><span class="at">    </span><span class="fu">inputBinding</span><span class="kw">:</span></span>
+<span id="cb3-18"><a href=""></a><span class="at">      </span><span class="fu">position</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb3-19"><a href=""></a><span class="at">      </span><span class="fu">prefix</span><span class="kw">:</span><span class="at"> --epochs</span></span>
+<span id="cb3-20"><a href=""></a></span>
+<span id="cb3-21"><a href=""></a><span class="fu">outputs</span><span class="kw">:</span></span>
+<span id="cb3-22"><a href=""></a><span class="at">  </span><span class="fu">model</span><span class="kw">:</span></span>
+<span id="cb3-23"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> File</span></span>
+<span id="cb3-24"><a href=""></a><span class="at">    </span><span class="fu">outputBinding</span><span class="kw">:</span></span>
+<span id="cb3-25"><a href=""></a><span class="at">      </span><span class="fu">glob</span><span class="kw">:</span><span class="at"> state_dict_model.pt</span></span>
+<span id="cb3-26"><a href=""></a><span class="at">  </span><span class="fu">loss</span><span class="kw">:</span></span>
+<span id="cb3-27"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb3-28"><a href=""></a><span class="at">    </span><span class="fu">outputBinding</span><span class="kw">:</span></span>
+<span id="cb3-29"><a href=""></a><span class="at">      </span><span class="fu">glob</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb3-30"><a href=""></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-cwl-graphs" class="slide level2">
+<h2>Visualizing CWL Graphs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/rRNA_selection_cwl.svg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>From <a href="https://view.commonwl.org/">CWL Viewer</a></p>
+</div></aside></section>
+<section id="cwl-implementations-in-production" class="slide level2">
+<h2>CWL Implementations in Production</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/cwl-implementations.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>From <a href="https://www.commonwl.org/implementations/">CWL Documentation</a></p>
+</div></aside></section>
+<section id="streamflow-architecture" class="slide level2">
+<h2>StreamFlow Architecture</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/streamflow-model.png" class="quarto-figure quarto-figure-center" height="500"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>From <a href="https://streamflow.di.unito.it/documentation/0.2/guide/architecture.html">StreamFlow documentation</a></p>
+</div></aside></section>
+<section id="streamflow-deployment" class="slide level2">
+<h2>StreamFlow Deployment</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="n1 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>streamflow_container.yaml</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="streamflow_container.yaml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href=""></a><span class="fu">workflows</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href=""></a><span class="at">  </span><span class="fu">workflow1</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> cwl</span></span>
+<span id="cb4-4"><a href=""></a><span class="at">    </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb4-5"><a href=""></a><span class="at">      </span><span class="fu">file</span><span class="kw">:</span><span class="at"> cwl/workflow.cwl</span></span>
+<span id="cb4-6"><a href=""></a><span class="at">      </span><span class="fu">settings</span><span class="kw">:</span><span class="at"> cwl/settings.yml</span></span>
+<span id="cb4-7"><a href=""></a><span class="at">    </span><span class="fu">bindings</span><span class="kw">:</span></span>
+<span id="cb4-8"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">step</span><span class="kw">:</span><span class="at"> /</span></span>
+<span id="cb4-9"><a href=""></a><span class="at">        </span><span class="fu">target</span><span class="kw">:</span></span>
+<span id="cb4-10"><a href=""></a><span class="at">          </span><span class="fu">deployment</span><span class="kw">:</span><span class="at"> python3.12</span></span>
+<span id="cb4-11"><a href=""></a></span>
+<span id="cb4-12"><a href=""></a><span class="fu">deployments</span><span class="kw">:</span></span>
+<span id="cb4-13"><a href=""></a><span class="at">  </span><span class="fu">python3.12</span><span class="kw">:</span></span>
+<span id="cb4-14"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> docker</span></span>
+<span id="cb4-15"><a href=""></a><span class="at">    </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb4-16"><a href=""></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> python:3.12</span></span>
+<span id="cb4-17"><a href=""></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="n2 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>streamflow_slurm.yaml</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="streamflow_slurm.yaml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href=""></a><span class="fu">workflows</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href=""></a><span class="co">  # same as left</span></span>
+<span id="cb5-3"><a href=""></a></span>
+<span id="cb5-4"><a href=""></a><span class="fu">deployments</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href=""></a><span class="at">  </span><span class="fu">ssh-cascade</span><span class="kw">:</span></span>
+<span id="cb5-6"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> ssh</span></span>
+<span id="cb5-7"><a href=""></a><span class="at">    </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb5-8"><a href=""></a><span class="at">      </span><span class="fu">nodes</span><span class="kw">:</span></span>
+<span id="cb5-9"><a href=""></a><span class="at">       </span><span class="kw">-</span><span class="at"> cascade-login.h-its.org</span></span>
+<span id="cb5-10"><a href=""></a><span class="at">  </span><span class="fu">slurm</span><span class="kw">:</span></span>
+<span id="cb5-11"><a href=""></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> slurm</span></span>
+<span id="cb5-12"><a href=""></a><span class="at">    </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb5-13"><a href=""></a><span class="at">      </span><span class="fu">maxConcurrentJobs</span><span class="kw">:</span><span class="at"> </span><span class="dv">10</span></span>
+<span id="cb5-14"><a href=""></a><span class="at">      </span><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb5-15"><a href=""></a><span class="at">        </span><span class="fu">cascade</span><span class="kw">:</span></span>
+<span id="cb5-16"><a href=""></a><span class="at">          </span><span class="fu">partition</span><span class="kw">:</span><span class="at"> cascade.p</span></span>
+<span id="cb5-17"><a href=""></a><span class="at">          </span><span class="fu">nodes</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb5-18"><a href=""></a><span class="at">          </span><span class="fu">mem</span><span class="kw">:</span><span class="at"> 1gb</span></span>
+<span id="cb5-19"><a href=""></a><span class="at">    </span><span class="fu">wraps</span><span class="kw">:</span><span class="at"> ssh-cascade</span></span>
+<span id="cb5-20"><a href=""></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="streamflow-federated-learning" class="slide level2">
+<h2>StreamFlow: Federated Learning</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/streamflow-xffl.webp" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Source: <a href="https://github.com/alpha-unito/streamflow-fl">Alpha group, University of Torino</a></p>
+</div></aside></section></section>
+<section id="streamflow-demo" class="title-slide slide level1 center">
+<h1><a href="https://github.com/BerndDoser/streamflow-example">StreamFlow Demo</a></h1>
+
+</section>
+
+<section>
+<section id="flyte" class="title-slide slide level1 center">
+<h1><img data-src="images/favicon-flyte-docs.webp" class="logo_h1_inline"> Flyte</h1>
+
+</section>
+<section id="flyte-1" class="slide level2">
+<h2><img data-src="images/favicon-flyte-docs.webp" class="logo_h2_inline"> Flyte</h2>
+<ul>
+<li><a href="https://flyte.org/">Flyte</a> is a highly scalable cloud-native workflow orchestration platform on top of containers and kubernetes</li>
+<li>Member of the <a href="https://lfaidata.foundation/projects/flyte/">Linux Foundation AI &amp; Data</a></li>
+<li>Strongly typed interfaces make it robust</li>
+<li>Supports a wide range of programming languages</li>
+<li>Data visualization and monitoring tools (<a href="https://flyte.org/features#data-visualization">FlyteDeck</a>)</li>
+<li>Large community and active development</li>
+</ul>
+</section>
+<section id="flyte-test-setup" class="slide level2">
+<h2>Flyte Test Setup</h2>
+
+<img data-src="images/flyte-test-setup.svg" class="quarto-figure quarto-figure-center r-stretch"><p>Thanks to <strong>Martin Wendt</strong> (ITS) for providing a comprehensive testing setup including Kubernetes (k3s), Flyte, and MinIO.</p>
+</section>
+<section id="flyte-command-line-interface" class="slide level2">
+<h2>Flyte Command-line Interface</h2>
+<ul>
+<li>Start a demo cluster on your local machine</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">flytectl</span> start demo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Create a new project</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">flytectl</span> create project <span class="at">--name</span> seminar <span class="at">--id</span> seminar <span class="at">--description</span> <span class="st">"seminar showcases"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Manage workflows, tasks, and executions</li>
+</ul>
+</section>
+<section id="flyte-concepts" class="slide level2">
+<h2>Flyte Concepts</h2>
+<ul>
+<li><strong>Project</strong>: A collection of workflows, tasks, and executions</li>
+<li><strong>Domain</strong>: Deployment level (<code>development</code>, <code>staging</code>, and <code>production</code>)</li>
+<li><strong>Workflow</strong>: A collection (directed acyclic graph) of tasks</li>
+<li><strong>Task</strong>: Fully independent unit of work</li>
+<li><strong>Execution</strong>: A run of a task or workflow</li>
+<li><strong>Launch Plan</strong>: A scheduled execution of a workflow</li>
+</ul>
+</section>
+<section id="flyte-tasks" class="slide level2">
+<h2>Flyte Tasks</h2>
+<ul>
+<li>Tasks are strongly typed (see <a href="https://docs.flyte.org/en/latest/user_guide/data_types_and_io/index.html#data-types-and-io">Flyte Type Mapping</a>)</li>
+<li>Tasks are regular Python function decorated with <code>@task</code></li>
+<li>Tasks are designed to be idempotent (multiple executions don’t change the result).</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a><span class="im">from</span> typing <span class="im">import</span> List</span>
+<span id="cb8-2"><a href=""></a><span class="im">from</span> flytekit <span class="im">import</span> task</span>
+<span id="cb8-3"><a href=""></a></span>
+<span id="cb8-4"><a href=""></a><span class="at">@task</span></span>
+<span id="cb8-5"><a href=""></a><span class="kw">def</span> mean(values: List[<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb8-6"><a href=""></a>    <span class="cf">return</span> <span class="bu">sum</span>(values) <span class="op">/</span> <span class="bu">len</span>(values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="flyte-workflows" class="slide level2">
+<h2>Flyte Workflows</h2>
+<p>Workflows are used to structure the task execution graph</p>
+<!-- ```python
+workflow_outputs = typing.NamedTuple(
+    "WorkflowOutputs",
+    simwords=Dict[str, float],
+    distance=float,
+    topics=Dict[int, List[str]],
+)
+``` -->
+<div style="font-size: 80%;">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="at">@task</span></span>
+<span id="cb9-2"><a href=""></a><span class="kw">def</span> generate_processed_corpus() <span class="op">-&gt;</span> List[List[<span class="bu">str</span>]]:</span>
+<span id="cb9-3"><a href=""></a></span>
+<span id="cb9-4"><a href=""></a><span class="at">@task</span></span>
+<span id="cb9-5"><a href=""></a><span class="kw">def</span> train_word2vec_model(training_data: List[List[<span class="bu">str</span>]], hyperparams: Word2VecModelHyperparams) <span class="op">-&gt;</span> model_file:</span>
+<span id="cb9-6"><a href=""></a></span>
+<span id="cb9-7"><a href=""></a><span class="at">@task</span></span>
+<span id="cb9-8"><a href=""></a><span class="kw">def</span> train_lda_model(corpus: List[List[<span class="bu">str</span>]], hyperparams: LDAModelHyperparams) <span class="op">-&gt;</span> Dict[<span class="bu">int</span>, List[<span class="bu">str</span>]]:</span>
+<span id="cb9-9"><a href=""></a></span>
+<span id="cb9-10"><a href=""></a><span class="at">@task</span></span>
+<span id="cb9-11"><a href=""></a><span class="kw">def</span> word_similarities(model_ser: FlyteFile[MODELSER_NLP], word: <span class="bu">str</span>) <span class="op">-&gt;</span> Dict[<span class="bu">str</span>, <span class="bu">float</span>]:</span>
+<span id="cb9-12"><a href=""></a></span>
+<span id="cb9-13"><a href=""></a><span class="at">@task</span></span>
+<span id="cb9-14"><a href=""></a><span class="kw">def</span> word_movers_distance(model_ser: FlyteFile[MODELSER_NLP]) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb9-15"><a href=""></a></span>
+<span id="cb9-16"><a href=""></a><span class="at">@workflow</span></span>
+<span id="cb9-17"><a href=""></a><span class="kw">def</span> nlp_workflow(target_word: <span class="bu">str</span> <span class="op">=</span> <span class="st">"computer"</span>) <span class="op">-&gt;</span> [Dict[<span class="bu">str</span>, <span class="bu">float</span>], <span class="bu">float</span>, Dict[<span class="bu">int</span>, List[<span class="bu">str</span>]]]:</span>
+<span id="cb9-18"><a href=""></a>    corpus <span class="op">=</span> generate_processed_corpus()</span>
+<span id="cb9-19"><a href=""></a>    model_wv <span class="op">=</span> train_word2vec_model(training_data<span class="op">=</span>corpus, hyperparams<span class="op">=</span>Word2VecModelHyperparams())</span>
+<span id="cb9-20"><a href=""></a>    lda_topics <span class="op">=</span> train_lda_model(corpus<span class="op">=</span>corpus, hyperparams<span class="op">=</span>LDAModelHyperparams())</span>
+<span id="cb9-21"><a href=""></a>    similar_words <span class="op">=</span> word_similarities(model_ser<span class="op">=</span>model_wv.model, word<span class="op">=</span>target_word)</span>
+<span id="cb9-22"><a href=""></a>    distance <span class="op">=</span> word_movers_distance(model_ser<span class="op">=</span>model_wv.model)</span>
+<span id="cb9-23"><a href=""></a>    <span class="cf">return</span> similar_words, distance, lda_topics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<aside><div>
+<p><a href="https://docs.flyte.org/en/latest/flytesnacks/examples/nlp_processing/word2vec_and_lda.html">Source</a></p>
+</div></aside></section>
+<section id="containerized-tasks" class="slide level2">
+<h2>Containerized Tasks</h2>
+<p>A Flyte task operates within its own container and runs on a Kubernetes pod</p>
+
+<img data-src="images/union_tasks.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="container-image-specifications" class="slide level2">
+<h2>Container Image Specifications</h2>
+<ul>
+<li>Customize the container image without a Dockerfile</li>
+<li>Container image is build at registration and pushed to a container registry</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a>custom_image <span class="op">=</span> ImageSpec(</span>
+<span id="cb10-2"><a href=""></a>    packages<span class="op">=</span>[<span class="st">"torch"</span>, <span class="st">"torchvision"</span>, <span class="st">"lightning"</span>],</span>
+<span id="cb10-3"><a href=""></a>    apt_packages<span class="op">=</span>[<span class="st">"curl"</span>, <span class="st">"wget"</span>],</span>
+<span id="cb10-4"><a href=""></a>    cuda<span class="op">=</span><span class="st">"12.6"</span>,</span>
+<span id="cb10-5"><a href=""></a>    python_version<span class="op">=</span><span class="st">"3.12"</span>,</span>
+<span id="cb10-6"><a href=""></a>    registry<span class="op">=</span><span class="st">"registry.h-its.org/doserbd/flyte"</span>,</span>
+<span id="cb10-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="flyteconsole-webui" class="slide level2">
+<h2>FlyteConsole (WebUI)</h2>
+<ul>
+<li>Launch and relaunch tasks and workflows</li>
+<li>View versioned tasks and workflows</li>
+<li>Inspect executions through inputs, outputs, logs, and graphs</li>
+<li>Clone and recover executions</li>
+</ul>
+</section></section>
+<section>
+<section id="flyte-demo" class="title-slide slide level1 center">
+<h1><a href="https://github.com/BerndDoser/flyte-mnist">Flyte Demo</a></h1>
+<!-- - [PyTorch MNIST Classifier](https://docs.flyte.org/en/latest/flytesnacks/examples/mnist_classifier/pytorch_single_node_and_gpu.html) -->
+</section>
+<section id="summary-i" class="slide level2" style="font-size: 90%;">
+<h2>Summary I</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="n1 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>StreamFlow</strong></p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Pros</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Common workflow language (CWL)</li>
+<li>Supports deployment on Slurm and Kubernetes</li>
+<li>No special infrastructure setup needed</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Cons</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Input and output bindings are redundant and error-prone</li>
+<li>Monitoring and visualization tools are outdated and not user-friendly</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="n2 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Flyte</strong></p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Pros</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>General-purpose workflow orchestrator leveraging Kubernetes</li>
+<li>Robust task interconnections with static typing</li>
+<li>Data pipeline driven by object storage</li>
+<li>Advanced monitoring and visualization features</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Cons</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Requires migration of compute nodes from Slurm to Kubernetes</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="infrastructure-for-machine-learning-workflows" class="title-slide slide level1 center">
+<h1>Infrastructure for Machine Learning Workflows</h1>
+
+</section>
+<section id="section" class="slide level2" data-background-image="images/ai_vs_hpc.png" data-transition="fade">
+<h2></h2>
+<p><span class="top_white">The background image was generated with FLUX on fal.ai<br>
+using the prompt ‘Visualize two worlds showing the difference between HPC and AI infrastructure’</span></p>
+</section>
+<section id="hpc-vs-aiml-infrastructure" class="slide level2" data-background-image="images/ai_vs_hpc.png" data-background-opacity="0.1">
+<h2>HPC vs AI/ML Infrastructure</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="n1 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>HPC workload</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Simulations, modeling, and data analysis</p></li>
+<li><p>Large clusters of CPUs and high-speed interconnects</p></li>
+<li><p>Parallel computing (MPI)</p></li>
+<li><p>Scheduling with Slurm</p></li>
+<li><p>Bare-metal compilation</p></li>
+<li><p>Distributed file storage</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="n2 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>AI/ML workload</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Training and inference of models</p></li>
+<li><p>Data-intensive tasks</p></li>
+<li><p>Numerous Matrix operations requires accelerators (GPU, TPU, ..)</p></li>
+<li><p>Cloud-native deployment</p></li>
+<li><p>Kubernetes and containers</p></li>
+<li><p>Object storage</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Hardware and software requirements differ significantly based on the nature of their workloads and infrastructure.</p>
+</section>
+<section id="storage-types" class="slide level2">
+<h2>Storage Types</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[1,1,1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>File Storage</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Hierarchical structure in files and directories</li>
+<li>Net-File-System (NFS)</li>
+</ul>
+<p><strong>~ 1-4 GB/s</strong> (READ milan-deep:/hits/fast)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Block Storage</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Data is divided in uniformly sized blocks</li>
+<li>Local SSD / NVMe (limited capacity)</li>
+<li>Can be distributed in storage-area network (SAN), but expensive</li>
+</ul>
+<p><strong>~ 5-10 GB/s</strong> (READ milan-deep:/local)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Object Storage</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Unstructured data (eg, images, videos, logs)</p></li>
+<li><p>RESTful API (cloud-native)</p></li>
+<li><p>S3 (AWS), MinIO</p></li>
+<li><p>Objects can’t be modified</p></li>
+<li><p><strong>~ 50 GB/s</strong> (GET, <a href="https://cdn.pathfactory.com/assets/preprocessed/10903/4bd04173-06a2-41b2-b182-87e908d9f4f0/4bd04173-06a2-41b2-b182-87e908d9f4f0.pdf?lb-height=100%25&amp;lb-width=100%25">MinIO benchmark</a>, 8 storage nodes)</p></li>
+<li><p>Can be scaled up into TB/s region</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ::: {.callout-note}
+- Throughput vs Latency
+::: -->
+</section>
+<section id="minio-object-storage" class="slide level2">
+<h2><img data-src="images/minio-logo.svg" class="logo_h2_inline"> MinIO Object Storage</h2>
+<ul>
+<li><a href="">MinIO</a> is a high-performance, open source object storage system</li>
+<li>The API is compatible Amazon S3 cloud storage service</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./images/minio.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Source: <a href="https://blog.min.io/why-ai-on-object-storage/">MinIO: The Real Reasons Why AI is Built on Object Storage</a></p>
+</div></aside></section>
+<section id="section-1" class="slide level2" data-background-image="images/minio-web.png" data-background-size="contain">
+<h2></h2>
+<!-- ## Streaming DataLoader
+
+- [Huggingface Streaming](https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable#downloading-and-streaming)
+
+
+## Feed the Beast -->
+</section>
+<section id="summary-ii" class="slide level2">
+<h2>Summary II</h2>
+<ul>
+<li><strong>HPC</strong> and <strong>AI/ML</strong> workflows have different requirements to the infrastructure</li>
+<li><strong>Object Storage</strong> is a scalable storage solution for unstructured data and provide fast access to large files</li>
+<li><strong>MinIO</strong> is an open-source object storage solution that can be deployed on-premises</li>
+</ul>
+</section></section>
+<section id="questions" class="title-slide slide level1 center">
+<h1>Questions?</h1>
+<div class="quarto-auto-generated-content">
+<p><img src="images/HITS_RGB_eng.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>ML Workflow Orchestration (Bernd Doser, HITS)</p>
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
