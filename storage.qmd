@@ -6,7 +6,7 @@
 - Hierarchical structure in files and directories
 - Net-File-System (NFS)
 
-**~ 1-4 GB/s** (READ milan-deep:/hits/fast)
+**~ 1-4 GB/s** (READ)
 :::
 
 ::: {.callout-note icon=false}
@@ -15,7 +15,7 @@
 - Local SSD / NVMe (limited capacity)
 - Can be distributed in storage-area network (SAN), but expensive
 
-**~ 5-10 GB/s** (READ milan-deep:/local)
+**~ 5-10 GB/s** (READ)
 :::
 
 ::: {.callout-note icon=false}
@@ -26,7 +26,7 @@
 - Objects can’t be modified
 
 - **~ 50 GB/s** (GET, [MinIO benchmark](https://cdn.pathfactory.com/assets/preprocessed/10903/4bd04173-06a2-41b2-b182-87e908d9f4f0/4bd04173-06a2-41b2-b182-87e908d9f4f0.pdf?lb-height=100%25&lb-width=100%25), 8 storage nodes)
-- Can be scaled up into TB/s region
+- Can be scaled up to TB/s
 :::
 :::
 
