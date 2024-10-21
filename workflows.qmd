@@ -46,7 +46,7 @@ Spherinator & HiPSter
 :::
 
 ::: aside
-K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)]().
+K. L. Polsterer, B. Doser, A. Fehlner and S. Trujillo-Gomez [ADASS (2024)](https://arxiv.org/abs/2406.03810).
 :::
 
 <!-- ![](images/Space-partners-new.png){fig-align="center"} -->
